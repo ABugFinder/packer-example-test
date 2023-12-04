@@ -1,3 +1,19 @@
+variable "aws_access_key" {
+  type    = string
+  default = "${env("AWS_ACCESS_KEY_ID")}"
+}
+
+variable "aws_secret_key" {
+  type    = string
+  default = "${env("AWS_SECRET_ACCESS_KEY")}"
+}
+
+variable "aws_region" {
+  type    = string
+  default = "us-east-1"
+}
+
+
 packer {
   required_plugins {
     amazon = {
@@ -37,8 +53,8 @@ build {
   ]
 
   provisioner "file" {
-    source = "../cocktails.zip"
-    destination = "/home/ec2-user/cocktails.zip"
+    source = "../../T1-application.zip"
+    destination = "/home/ec2-user/T1-application.zip"
   }
 
   provisioner "file" {
